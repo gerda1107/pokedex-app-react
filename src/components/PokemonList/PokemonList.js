@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState, useEffect } from 'react';
-import Axios from 'axios';
+import { fetchData } from './fetchData';
 import PokemonCard from './PokemonCard';
 
 const PokemonList = () => {
@@ -9,20 +9,23 @@ const PokemonList = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-        fetchList();
-  }, [])
-  
-  const fetchList = async () => {
-    await Axios.get('https://pokeapi.co/api/v2/pokemon?limit=15')
-      .then(res => { setPokemons(res.data.results); })
-      .finally(() => setLoading(false));
+    fetchPokemons('https://pokeapi.co/api/v2/pokemon?limit=15');
+  }, []);
+
+  const fetchPokemons = async(url) => {
+    const { data: Pokemons } = await fetchData(url);
+    if (Pokemons) {
+      setPokemons(Pokemons.results);
+      setLoading(false);
+    }
   }
 
   return loading ?
     (<div>No Pokemon</div>) :
-    (getPokemons.map((pokemon, index) =>
+    (<div className="pokemon-container d-flex jc-space-between">
+      {getPokemons.map((pokemon, index) =>
       { return <PokemonCard pokemonInfo={pokemon} key={index} /> }
-    ));
+    )}</div>);
 };
 
 export default PokemonList;

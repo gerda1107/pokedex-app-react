@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState, useEffect } from 'react';
-import Axios from 'axios';
+import { fetchData } from './fetchData';
 
 const PokemonDetails = ({ pokemonInfo }) => {
 
@@ -8,21 +8,21 @@ const PokemonDetails = ({ pokemonInfo }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetchPokemon();   
-    }, []);
-    
-    const fetchPokemon = async () => {
-    await Axios.get(`${pokemonInfo.url}`)
-        .then(res => {
-            setPokemon(res.data);
-        })
-        .finally(() => setLoading(false));
+      fetchPokemon(pokemonInfo.url);
+    }, [])
+
+    const fetchPokemon = async(url) => {
+        const { data: Pokemon } = await fetchData(url);
+        if (Pokemon) {
+        setPokemon(Pokemon);
+        setLoading(false);
+        }
     }
     
     return loading ? (<div>no data</div>) :
-        (<div>
-        <h3>{pokemonInfo.name}</h3>
-        <img src={getPokemon.sprites.front_default} alt=""></img>
+        (<div className="pokemon-card">
+            <img src={getPokemon.sprites.front_default} alt=""></img>
+            <h3>{pokemonInfo.name.toUpperCase()}</h3>
     </div>);
 };
 
