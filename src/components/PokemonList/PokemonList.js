@@ -5,7 +5,7 @@ import PokemonCard from './PokemonCard';
 
 const PokemonList = () => {
 
-  const [getPokemon, setPokemon] = useState(null);
+  const [getPokemons, setPokemons] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -14,15 +14,13 @@ const PokemonList = () => {
   
   const fetchList = async () => {
     await Axios.get('https://pokeapi.co/api/v2/pokemon?limit=15')
-      .then(res => { setPokemon(res.data.results); })
+      .then(res => { setPokemons(res.data.results); })
       .finally(() => setLoading(false));
   }
 
-  console.log(getPokemon);
-
   return loading ?
     (<div>No Pokemon</div>) :
-    (getPokemon.map((pokemon, index) =>
+    (getPokemons.map((pokemon, index) =>
       { return <PokemonCard pokemonInfo={pokemon} key={index} /> }
     ));
 };
