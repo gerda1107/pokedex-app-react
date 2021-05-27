@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { fetchData } from './fetchData';
 
 const PokemonDetails = ({ pokemonInfo }) => {
@@ -18,12 +19,14 @@ const PokemonDetails = ({ pokemonInfo }) => {
         setLoading(false);
         }
     }
-    
+
     return loading ? (<div>no data</div>) :
-        (<div className="pokemon-card">
-            <img src={getPokemon.sprites.front_default} alt=""></img>
-            <h3>{pokemonInfo.name.toUpperCase()}</h3>
-    </div>);
+        (<Link to={`pokemon/${getPokemon.id}`}>
+            <div className="pokemon-card">
+                <img src={getPokemon.sprites.front_default} alt=""></img>
+                <h3>{pokemonInfo.name.toUpperCase()}</h3>
+            </div>
+        </Link>);
 };
 
 export default PokemonDetails;
