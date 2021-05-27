@@ -1,4 +1,51 @@
 body {
     margin: 0;
-    background-color: aqua;
+    background-color: #001219;
+}
+
+/* GENERAL */
+
+.d-flex {
+    display: flex;
+}
+
+.jc-center {
+    justify-content: center;
+}
+
+.jc-space-evenly {
+    justify-content: space-evenly;
+}
+
+.jc-space-between {
+    justify-content: space-between;
+}
+
+.ai-center {
+    align-items: center;
+}
+
+.dir-column {
+  flex-direction: column;
+}
+
+/* POKEMON LIST */
+
+.pokemon-container {
+    flex-wrap: wrap;
+    width: 70%;
+    margin: auto;
+}
+
+.pokemon-card {
+    width: 250px;
+    height: 250px;
+    text-align: center;
+    color: #E9D8A6;
+    background-color: #005F73;
+    margin: 10px;
+}
+
+.pokemon-card img {
+    width: 70%;
 }
