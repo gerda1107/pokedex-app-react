@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useState, useEffect } from 'react';
 import { fetchData } from '../PokemonList/fetchData';
+import FavoriteIcon from '../FavoriteIcon/FavoriteIcon';
 
 const PokemonDetails = () => {
 
@@ -23,7 +24,21 @@ const PokemonDetails = () => {
   
   return loading ?
     (<div className="spinner"></div>) :
-    (<div>dsfsdf</div>);
+    (<div className="jc-center d-flex">
+      <div className="details-container d-flex jc-space-evenly">
+        <div className="d-flex jc-space-evenly details-img">
+          <img src={getDetails.sprites.front_default} alt=""></img>
+          <div className="favorite-icon"><FavoriteIcon/></div>
+      </div>
+
+      <div className="details-info">
+          <h3>{getDetails.name.toUpperCase()}</h3>
+          <div></div>
+      </div>
+    </div>
+      
+
+    </div>);
 };
 
 export default PokemonDetails;
