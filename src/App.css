@@ -59,10 +59,15 @@ body {
 .pokemon-card {
     width: 450px;
     text-align: center;
-    color: #E9D8A6;
     background-color: #002b33;
     border-radius: 10px;
     margin: 10px auto;
+    transition: 0.3s;
+}
+
+.pokemon-card:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  transform:scale(1.02);
 }
 
 .pokemon-card img {
@@ -70,9 +75,43 @@ body {
 }
 .pokemon-card h3 {
     margin: 0;
-    padding: 30px;
-    font-weight: 700;
-    background-color: #EA4334;
+    padding-bottom: 30px;
+    font-weight: 500;
+    color: white;
+}
+
+/* FAVORITE */
+
+.favorite-icon {
+  margin: 25px 10px;
+  transition: 0.3s;
+  align-self: flex-start;
+}
+
+.favorite-icon:hover {
+  transform: scale(1.1);
+}
+
+/* DETAILS */
+
+.details-container {
+  width: 80%;
+  padding: 30px;
+}
+
+.details-img {
+  width: 50%;
+  background-color: #002b33;
+  border-radius: 10px;
+}
+
+.details-img img {
+  width: 100%;
+}
+
+.details-info {
+  text-align: center;
+  color: #002b33;
 }
 
 /* SPINNER */
