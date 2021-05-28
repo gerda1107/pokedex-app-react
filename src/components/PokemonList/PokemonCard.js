@@ -2,6 +2,7 @@ import * as React from "react";
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchData } from './fetchData';
+import FavoriteIcon from '../FavoriteIcon/FavoriteIcon';
 
 const PokemonDetails = ({ pokemonInfo }) => {
 
@@ -21,8 +22,11 @@ const PokemonDetails = ({ pokemonInfo }) => {
     }
 
     return loading ? (<div className="spinner"></div>) :
-        (<Link to={`pokemon/${getPokemon.id}`} className="text-link pokemon-card">
-                <img src={getPokemon.sprites.front_default} alt=""></img>
+      (<Link to={`pokemon/${getPokemon.id}`} className="text-link pokemon-card">
+        <div className="d-flex jc-space-evenly">
+          <img src={getPokemon.sprites.front_default} alt=""></img>
+          <div className="favorite-icon"><FavoriteIcon/></div>
+        </div>
         <h3>{pokemonInfo.name.toUpperCase()}</h3>
         </Link>);
 
