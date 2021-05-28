@@ -3,6 +3,7 @@ import * as React from "react";
 const FavoriteIcon = () => {
   return (
     <svg
+      width="50px"
       viewBox="0 0 300 275"
       xmlns="http://www.w3.org/2000/svg"
       version="1.1"
