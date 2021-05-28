@@ -21,8 +21,8 @@ const PokemonList = () => {
   }
 
   return loading ?
-    (<div>No Pokemon</div>) :
-    (<div className="pokemon-container d-flex jc-space-between">
+    (<div className="spinner"></div>) :
+    (<div className="pokemon-container d-flex">
       {getPokemons.map((pokemon, index) =>
       { return <PokemonCard pokemonInfo={pokemon} key={index} /> }
     )}</div>);

@@ -20,13 +20,12 @@ const PokemonDetails = ({ pokemonInfo }) => {
         }
     }
 
-    return loading ? (<div>no data</div>) :
-        (<Link to={`pokemon/${getPokemon.id}`}>
-            <div className="pokemon-card">
+    return loading ? (<div className="spinner"></div>) :
+        (<Link to={`pokemon/${getPokemon.id}`} className="text-link pokemon-card">
                 <img src={getPokemon.sprites.front_default} alt=""></img>
-                <h3>{pokemonInfo.name.toUpperCase()}</h3>
-            </div>
+        <h3>{pokemonInfo.name.toUpperCase()}</h3>
         </Link>);
+
 };
 
 export default PokemonDetails;
