@@ -1,44 +1,39 @@
 import * as React from "react";
-import { useState, useEffect } from 'react';
-import { fetchData } from '../PokemonList/fetchData';
+import { useState } from 'react';
 import FavoriteIcon from '../FavoriteIcon/FavoriteIcon';
+import { parseData } from '../HandleLocalStorage/handleLocalStorage';
+import StatsTable from './StatsTable';
 
 const PokemonDetails = () => {
 
-  const pokemonId = window.location.pathname.split('/').pop();
-
-  const [getDetails, setDetails] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-      fetchDetails(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
-    }, [])
-
-    const fetchDetails = async(url) => {
-        const { data: Details } = await fetchData(url);
-        if (Details) {
-        setDetails(Details);
-        setLoading(false);
-        }
-  }
+  const pokemonName = window.location.pathname.split('/').pop();
+  const [getDetails, setDetails] = useState(parseData(pokemonName));
   
-  return loading ?
-    (<div className="spinner"></div>) :
-    (<div className="jc-center d-flex">
-      <div className="details-container d-flex jc-space-evenly">
-        <div className="d-flex jc-space-evenly details-img">
-          <img src={getDetails.sprites.front_default} alt=""></img>
-          <div className="favorite-icon"><FavoriteIcon/></div>
+  return <div className="jc-center d-flex">
+    <div className="details-container d-flex jc-space-evenly">
+      <div className="d-flex jc-space-evenly details-img">
+        <img src={getDetails.sprites.front_default} alt=""></img>
+        <div className="favorite-icon"><FavoriteIcon/></div>
       </div>
 
       <div className="details-info">
-          <h3>{getDetails.name.toUpperCase()}</h3>
-          <div></div>
+        <h3>{getDetails.name.toUpperCase()}</h3>
+        <div className="d-flex jc-space-between">
+          <div>
+            <h5>TYPE</h5>
+            <div className="d-flex jc-space-evenly">{getDetails.types.map((type, index) => {
+              return <p key={index}>{type.type.name}</p>})}</div>
+          </div>
+          <div>
+            <h5>ABILITIES</h5>
+            <div className="d-flex jc-space-evenly">{getDetails.abilities.map((ability, index) => {
+              return <p key={index}>{ability.ability.name}</p>})}</div>
+          </div>
+        </div>
+        <StatsTable getDetails={getDetails}/>
       </div>
-    </div>
-      
-
-    </div>);
+  </div>
+</div>;
 };
 
 export default PokemonDetails;
