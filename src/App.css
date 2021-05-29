@@ -112,6 +112,7 @@ body {
 .details-info {
   text-align: center;
   color: #002b33;
+  width: 50%;
 }
 
 /* SPINNER */
