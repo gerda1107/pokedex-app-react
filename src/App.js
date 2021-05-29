@@ -13,7 +13,7 @@ export default function App() {
       <Route exact path="/">
         <PokemonList />
       </Route>
-      <Route exact path="/pokemon/:index">
+      <Route exact path="/pokemon/:name">
         <PokemonDetails />
       </Route>
     </Switch>
