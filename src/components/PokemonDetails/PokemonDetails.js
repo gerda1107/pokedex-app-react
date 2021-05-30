@@ -1,19 +1,21 @@
 import * as React from "react";
-import { useState } from 'react';
 import FavoriteIcon from '../FavoriteIcon/FavoriteIcon';
 import { parseData } from '../HandleLocalStorage/handleLocalStorage';
 import StatsTable from './StatsTable';
 
-const PokemonDetails = () => {
+const PokemonDetails = ({addToFavorite}) => {
 
   const pokemonName = window.location.pathname.split('/').pop();
-  const [getDetails, setDetails] = useState(parseData(pokemonName));
+  const getDetails = parseData(pokemonName);
+  const favorites = parseData('favorites');
   
   return <div className="jc-center d-flex">
     <div className="details-container d-flex jc-space-evenly">
       <div className="d-flex jc-space-evenly details-img">
         <img src={getDetails.sprites.front_default} alt=""></img>
-        <div className="favorite-icon"><FavoriteIcon/></div>
+        <div className="favorite-icon" onClick={() => addToFavorite(pokemonName)}>
+          {favorites.includes(pokemonName) ? <FavoriteIcon fill={'white'} /> : <FavoriteIcon fill={'none'} />}
+        </div>
       </div>
 
       <div className="details-info">
