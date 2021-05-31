@@ -1,20 +1,14 @@
 import Axios from 'axios';
-import { setDataToStorage, doesKeyExist } from '../HandleLocalStorage/handleLocalStorage';
-
-const fetchData = async (url) => {
-    return await Axios.get(url);
-}
-
-export const FetchPokemons = async(url, key) => {
-    const { data: Pokemons } = await fetchData(url);
-    if (Pokemons) {
-        setDataToStorage(key, JSON.stringify(Pokemons.results));
-    }
-}
+import { setDataToStorage } from '../HandleLocalStorage/handleLocalStorage';
+const PokemonListUrl = 'https://pokeapi.co/api/v2/pokemon?limit=15';
   
-export const FetchPokemon = async(url, key) => {
-    const { data: Pokemon } = await fetchData(url);
-    if (Pokemon && !doesKeyExist(key)) {
-        setDataToStorage(key, JSON.stringify(Pokemon));
-    }
-  }
+export const fetchData = () => { 
+    Axios.get(PokemonListUrl)
+        .then((response) => {
+            setDataToStorage('pokemon_list', JSON.stringify(response.data.results));
+            response.data.results.map(item => {
+                return Axios.get(item.url)
+                    .then((res) => setDataToStorage(item.name, JSON.stringify(res.data)));
+            })
+    })
+}
