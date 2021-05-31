@@ -5,7 +5,7 @@ import './App.css';
 import PokemonList from "./components/PokemonList/PokemonList";
 import PokemonDetails from "./components/PokemonDetails/PokemonDetails";
 import Nav from "./components/Inc/nav";
-import {setDataToStorage, parseData, doesKeyExist} from './components/HandleLocalStorage/handleLocalStorage'
+import {setDataToStorage, parseData} from './components/HandleLocalStorage/handleLocalStorage'
 
 export default function App() {
 
@@ -32,6 +32,9 @@ export default function App() {
     setFavorites([...updatedFavoriteList]);
     setDataToStorage('favorites', favorites);
   }
+
+  // localStorage.clear();
+  // console.log(window.localStorage);
 
   return <Router>
     <Nav/>
