@@ -1,14 +1,26 @@
 import * as React from "react";
-import FavoriteIcon from '../FavoriteIcon/FavoriteIcon';
-import { parseData } from '../HandleLocalStorage/handleLocalStorage';
+import { useState, useEffect } from 'react';
+import {ApiURL, GetPokemonDetails} from '../HandlePokemonDetails/handlePokemonDetails'
 import StatsTable from './StatsTable';
+import FavoriteIcon from '../FavoriteIcon/FavoriteIcon';
 
 const PokemonDetails = ({addToFavorite, favorites}) => {
 
   const pokemonName = window.location.pathname.split('/').pop();
-  const getDetails = parseData(pokemonName);
+  const [getDetails, setDetails] = useState({});
+  const [loading, setLoading] = useState(true)
 
-  return <div className="jc-center d-flex">
+  useEffect(() => {
+    const getPokemonData = async() => {
+      let result = await GetPokemonDetails(pokemonName, `${ApiURL}pokemon/${pokemonName}`)
+      setDetails({...result})
+      setLoading(false)
+    }
+    getPokemonData();
+  }, [])
+
+  return loading ? (<div className="spinner"></div>) :
+  (<div className="jc-center d-flex">
     <div className="details-container d-flex jc-space-evenly">
       <div className="d-flex jc-space-evenly details-img">
         <img src={getDetails.sprites.front_default} alt=""></img>
@@ -34,7 +46,7 @@ const PokemonDetails = ({addToFavorite, favorites}) => {
         <StatsTable getDetails={getDetails}/>
       </div>
   </div>
-</div>;
+</div>);
 };
 
 export default PokemonDetails;
