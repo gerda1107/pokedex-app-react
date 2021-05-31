@@ -20,14 +20,14 @@ const PokemonList = ({addToFavorite, favorites}) => {
 
   return loading ?
     (<div className="spinner"></div>) :
-    (<div className="pokemon-container d-flex">
+    (<div className="pokemon-container d-flex flex-wrap">
       {getPokemons.map(pokemon =>
-      {return <div className="pokemon-card" key={pokemon.name}>
-        <PokemonCard pokemonInfo={pokemon} addToFavorite={addToFavorite} />
-        <div className="favorite-icon" onClick={() => addToFavorite(pokemon.name)}>
-        {favorites.includes(pokemon.name) ? <FavoriteIcon fill={'white'} /> : <FavoriteIcon fill={'none'}/>}</div>
-      </div>
-      }
+        {return <div className="pokemon-card" key={pokemon.name}>
+          <PokemonCard pokemonInfo={pokemon}/>
+          <div className="favorite-icon" onClick={() => addToFavorite(pokemon.name)}>
+            {favorites.includes(pokemon.name) ? <FavoriteIcon fill={'#fcbf49'} /> : <FavoriteIcon fill={'none'}/>}
+          </div>
+        </div>}
     )}</div>);
 };
 

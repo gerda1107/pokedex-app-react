@@ -39,7 +39,7 @@ export default function App() {
       <Route exact path="/">
         <PokemonList addToFavorite={addToFavorite} favorites={favorites}/>
       </Route>
-      <Route exact path="/pokemon/:id">
+      <Route exact path="/pokemon/:name">
         <PokemonDetails addToFavorite={addToFavorite} favorites={favorites}/>
       </Route>
     </Switch>

@@ -1,68 +1,43 @@
 body {
     margin: 0;
-    background-color: #E9D8A6;
+    background-color: #F4F1DE;
     font-family: 'Josefin Sans', sans-serif;
-}
-
-/* GENERAL */
-
-.d-flex {
-    display: flex;
-}
-
-.jc-center {
-    justify-content: center;
-}
-
-.jc-space-evenly {
-    justify-content: space-evenly;
-}
-
-.jc-space-between {
-    justify-content: space-between;
-}
-
-.ai-center {
-    align-items: center;
-}
-
-.dir-column {
-  flex-direction: column;
 }
 
 /* NAVIGATION */
 
 .nav {
     height: 100px;
-    background-color: #AE2012;
-    margin-bottom: 10px;
 }
 
-.nav-title {
-    font-size: 25px;
+.nav-title  {
+    font-size: 30px;
     font-weight: 500;
-    margin: 0 30px;
+    padding: 30px;
+    text-decoration: none;
+    color: #F4F1DE;
+}
+
+.nav-title:hover {
+  color: #F4F1DE;
 }
 
 .text-link {
     text-decoration: none;
-    color: #E9D8A6;
+    color: inherit;
 }
 
 /* POKEMON LIST */
 
 .pokemon-container {
-    flex-wrap: wrap;
     width: 100%;
+    padding: 50px;
 }
 
 .pokemon-card {
-    width: 450px;
-    text-align: center;
-    background-color: #002b33;
-    border-radius: 10px;
     margin: 10px auto;
     transition: 0.3s;
+    position: relative;
 }
 
 .pokemon-card:hover {
@@ -71,38 +46,30 @@ body {
 }
 
 .pokemon-card img {
-    width: 80%;
+    width: 100%;
 }
-.pokemon-card h3 {
+
+.pokemon-card p, .pokemon-container .card p {
     margin: 0;
-    padding-bottom: 30px;
-    font-weight: 500;
-    color: white;
+    font-weight: 700;
+    color: #212529;
 }
 
 /* FAVORITE */
 
 .favorite-icon {
-  margin: 25px 10px;
+  margin: 15px 15px;
   transition: 0.3s;
   align-self: flex-start;
-}
-
-.favorite-icon:hover {
-  transform: scale(1.1);
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 /* DETAILS */
 
-.details-container {
-  width: 80%;
-  padding: 30px;
-}
-
-.details-img {
-  width: 50%;
-  background-color: #002b33;
-  border-radius: 10px;
+.card {
+  width: 400px;
 }
 
 .details-img img {
@@ -111,16 +78,21 @@ body {
 
 .details-info {
   text-align: center;
-  color: #002b33;
+  color: #212529;
   width: 50%;
 }
 
+.details-info span {
+  border-radius: 5px;
+}
+
 /* SPINNER */
+
 .spinner {
   width: 40px;
   height: 40px;
   margin: 100px auto;
-  background-color: #EA4334;
+  background-color: #212529;
 
   border-radius: 100%;  
   -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;

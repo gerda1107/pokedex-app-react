@@ -14,14 +14,17 @@ const PokemonCard = ({ pokemonInfo }) => {
       setLoading(false)
     }
     getPokemonData();
-  }, [])
+  }, [pokemonInfo.name])
 
-  return loading ? (<div className="spinner"></div>) :
+  return loading ?
+    (<div className="spinner"></div>) :
     (<Link to={`pokemon/${pokemonInfo.name}`} className="text-link">
-          <div className="d-flex jc-space-evenly">
-            <img src={getPokemon.sprites.front_default} alt=""></img>
-          </div>
-          <h3>{pokemonInfo.name.toUpperCase()}</h3>
+      <div className="card" style={{ width: '18rem' }}>
+        <img src={getPokemon.sprites.front_default} className="bg-dark" alt="..."></img>
+        <div className="card-body">
+          <p className="text-link">{pokemonInfo.name.toUpperCase()}</p>
+        </div>
+      </div>
   </Link>)
 }
 
