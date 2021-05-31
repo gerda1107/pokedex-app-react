@@ -1,15 +1,15 @@
-export const setDataToStorage = (key, value) => {
+export const WriteToLocalStorage = (key, value) => {
     localStorage.setItem(key, JSON.stringify(value));
 }
 
-export const doesKeyExist = (key) => {
-    return localStorage.getItem(key) ? true : false;
+export const ReadFromLocalStorage = (key) => {
+    let parsed = JSON.parse(localStorage.getItem(key));
+    return parsed;
 }
 
-export const parseData = (key) => {
-    let parsed = JSON.parse(localStorage.getItem(key));
-    if (typeof parsed === 'string') parsed = JSON.parse(parsed);
-    return parsed;
+export const DoesExistInLocalStorage = (key) => {
+    let item = WriteToLocalStorage(key);
+    return item ? item : false;
 }
 
 

@@ -1,16 +1,16 @@
 import React from "react";
+import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import './App.css';
+import {WriteToLocalStorage, ReadFromLocalStorage} from './components/HandleLocalStorage/handleLocalStorage'
+import Nav from "./components/Inc/nav";
 import PokemonList from "./components/PokemonList/PokemonList";
 import PokemonDetails from "./components/PokemonDetails/PokemonDetails";
-import Nav from "./components/Inc/nav";
-import {setDataToStorage, parseData} from './components/HandleLocalStorage/handleLocalStorage'
 
 export default function App() {
 
   const [favorites, setFavorites] = useState([]);
-  const getFavorites = parseData('favorites');
+  const getFavorites = ReadFromLocalStorage('favorites');
 
   useEffect(() => {
     if (getFavorites !== null) {
@@ -30,11 +30,8 @@ export default function App() {
         updatedFavoriteList.push(name);
       }
     setFavorites([...updatedFavoriteList]);
-    setDataToStorage('favorites', favorites);
+    WriteToLocalStorage('favorites', favorites);
   }
-
-  // localStorage.clear();
-  // console.log(window.localStorage);
 
   return <Router>
     <Nav/>
