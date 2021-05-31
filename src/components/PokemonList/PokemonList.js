@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useState, useEffect } from 'react';
 import { GetPokemonsList } from '../HandlePokemonDetails/handlePokemonData';
-import { ReadFromLocalStorage } from '../HandleLocalStorage/handleLocalStorage';
 import PokemonCard from './PokemonCard';
 import FavoriteIcon from '../FavoriteIcon/FavoriteIcon';
 
@@ -18,7 +17,6 @@ const PokemonList = ({addToFavorite, favorites}) => {
     }
     getAllPokemons();
   }, [])
-
 
   return loading ?
     (<div className="spinner"></div>) :

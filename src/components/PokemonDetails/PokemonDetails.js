@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState, useEffect } from 'react';
-import {ApiURL, GetPokemonDetails} from '../HandlePokemonDetails/handlePokemonData'
+import {GetPokemonDetails} from '../HandlePokemonDetails/handlePokemonData'
 import StatsTable from './StatsTable';
 import FavoriteIcon from '../FavoriteIcon/FavoriteIcon';
 
@@ -9,7 +9,6 @@ const PokemonDetails = ({addToFavorite, favorites}) => {
   const pokemonName = window.location.pathname.split('/').pop();
   const [getDetails, setDetails] = useState({});
   const [loading, setLoading] = useState(true)
-
 
   useEffect(() => {
     const getPokemonData = async() => {

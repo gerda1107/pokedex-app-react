@@ -33,9 +33,6 @@ export default function App() {
     WriteToLocalStorage('favorites', favorites);
   }
 
-  console.log(localStorage);
-  // localStorage.clear()
-
   return <Router>
     <Nav/>
     <Switch>
