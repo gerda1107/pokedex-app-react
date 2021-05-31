@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useState, useEffect } from 'react';
-import { GetPokemonsList } from '../HandlePokemonDetails/handlePokemonDetails';
+import { GetPokemonsList } from '../HandlePokemonDetails/handlePokemonData';
+import { ReadFromLocalStorage } from '../HandleLocalStorage/handleLocalStorage';
 import PokemonCard from './PokemonCard';
 import FavoriteIcon from '../FavoriteIcon/FavoriteIcon';
 
@@ -11,8 +12,8 @@ const PokemonList = ({addToFavorite, favorites}) => {
 
   useEffect(() => {
     const getAllPokemons = async() => {
-      let result = await GetPokemonsList('pokemon_list')
-      setPokemons([...result])
+      let pokemons = await GetPokemonsList()
+      setPokemons([...pokemons])
       setLoading(false)
     }
     getAllPokemons();
@@ -22,11 +23,11 @@ const PokemonList = ({addToFavorite, favorites}) => {
   return loading ?
     (<div className="spinner"></div>) :
     (<div className="pokemon-container d-flex">
-      {getPokemons.map((pokemon, index) =>
-      {return <div className="pokemon-card" key={index}>
+      {getPokemons.map(pokemon =>
+      {return <div className="pokemon-card" key={pokemon.name}>
         <PokemonCard pokemonInfo={pokemon} addToFavorite={addToFavorite} />
         <div className="favorite-icon" onClick={() => addToFavorite(pokemon.name)}>
-        {favorites.includes(pokemon.name) ?<FavoriteIcon fill={'white'} /> : <FavoriteIcon fill={'none'}/>}</div>
+        {favorites.includes(pokemon.name) ? <FavoriteIcon fill={'white'} /> : <FavoriteIcon fill={'none'}/>}</div>
       </div>
       }
     )}</div>);

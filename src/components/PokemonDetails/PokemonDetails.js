@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState, useEffect } from 'react';
-import {ApiURL, GetPokemonDetails} from '../HandlePokemonDetails/handlePokemonDetails'
+import {ApiURL, GetPokemonDetails} from '../HandlePokemonDetails/handlePokemonData'
 import StatsTable from './StatsTable';
 import FavoriteIcon from '../FavoriteIcon/FavoriteIcon';
 
@@ -10,10 +10,11 @@ const PokemonDetails = ({addToFavorite, favorites}) => {
   const [getDetails, setDetails] = useState({});
   const [loading, setLoading] = useState(true)
 
+
   useEffect(() => {
     const getPokemonData = async() => {
-      let result = await GetPokemonDetails(pokemonName, `${ApiURL}pokemon/${pokemonName}`)
-      setDetails({...result})
+      let pokemonDetails = await GetPokemonDetails(pokemonName)
+      setDetails({...pokemonDetails})
       setLoading(false)
     }
     getPokemonData();

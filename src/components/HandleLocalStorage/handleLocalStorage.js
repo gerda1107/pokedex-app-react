@@ -4,12 +4,7 @@ export const WriteToLocalStorage = (key, value) => {
 
 export const ReadFromLocalStorage = (key) => {
     let parsed = JSON.parse(localStorage.getItem(key));
-    return parsed;
-}
-
-export const DoesExistInLocalStorage = (key) => {
-    let item = WriteToLocalStorage(key);
-    return item ? item : false;
+    return parsed ? parsed : null;
 }
 
 

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { GetPokemonDetails } from '../HandlePokemonDetails/handlePokemonDetails';
+import { GetPokemonDetails } from '../HandlePokemonDetails/handlePokemonData';
 
 const PokemonCard = ({ pokemonInfo }) => {
   const [getPokemon, setPokemon] = useState({});
@@ -9,7 +9,7 @@ const PokemonCard = ({ pokemonInfo }) => {
 
   useEffect(() => {
     const getPokemonData = async() => {
-      let result = await GetPokemonDetails(pokemonInfo.name, pokemonInfo.url)
+      let result = await GetPokemonDetails(pokemonInfo.name)
       setPokemon({...result})
       setLoading(false)
     }

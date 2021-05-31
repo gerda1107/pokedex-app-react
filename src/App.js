@@ -33,13 +33,16 @@ export default function App() {
     WriteToLocalStorage('favorites', favorites);
   }
 
+  console.log(localStorage);
+  // localStorage.clear()
+
   return <Router>
     <Nav/>
     <Switch>
       <Route exact path="/">
         <PokemonList addToFavorite={addToFavorite} favorites={favorites}/>
       </Route>
-      <Route exact path="/pokemon/:name">
+      <Route exact path="/pokemon/:id">
         <PokemonDetails addToFavorite={addToFavorite} favorites={favorites}/>
       </Route>
     </Switch>
